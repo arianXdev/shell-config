@@ -107,6 +107,7 @@ source $ZSH/oh-my-zsh.sh
 #
 alias icat="kitty +kitten icat"
 alias gedit="gnome-text-editor"
+alias yt="yt-dlp"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
