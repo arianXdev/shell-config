@@ -74,6 +74,7 @@ plugins=(
     git
     zsh-autosuggestions
     zsh-syntax-highlighting
+    gh
 )
 
 
@@ -105,7 +106,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-alias icat="kitty +kitten icat"
 alias gedit="gnome-text-editor"
 alias yt="yt-dlp"
 alias neofetch="neofetch --color_blocks off"
