@@ -107,6 +107,11 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 alias neofetch="neofetch --color_blocks off"
+alias tornew="pidof tor | xargs sudo kill -HUP"
+
+alias bl="bluetoothctl"
+alias blc="bluetoothctl connect"
+alias bld="bluetoothctl disconnect"
 
 # Qtile WM configuration
 alias qconfig="code ~/.config/qtile/config.py"
