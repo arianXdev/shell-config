@@ -4,6 +4,9 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+if [ -f /etc/bash.command-not-found ]; then
+    . /etc/bash.command-not-found
+fi
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -108,6 +111,7 @@ source $ZSH/oh-my-zsh.sh
 #
 alias neofetch="neofetch --color_blocks off"
 alias tornew="pidof tor | xargs sudo kill -HUP"
+alias ytdl="yt-dlp --proxy 'socks5://127.0.0.1:9150'"
 
 alias bl="bluetoothctl"
 alias blc="bluetoothctl connect"
@@ -130,3 +134,4 @@ export NVM_DIR="$HOME/.nvm"
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
