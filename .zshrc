@@ -4,9 +4,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-if [ -f /etc/bash.command-not-found ]; then
-    . /etc/bash.command-not-found
-fi
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -109,6 +106,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
+#
 alias neofetch="neofetch --color_blocks off"
 alias tornew="pidof tor | xargs sudo kill -HUP"
 alias ytdl="yt-dlp --proxy 'socks5://127.0.0.1:9150'"
@@ -126,6 +124,12 @@ alias wifi-list="nmcli dev wifi list"
 # wifi-connect SYNTAX: sudo nmcli dev wifi connect <SSID> password <password>
 alias wifi-connect="sudo nmcli dev wifi connect"
 
+alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
+
+# get error messages from journalctl
+alias jctl="journalctl -p 3 -xb"
+
+
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -133,4 +137,8 @@ export NVM_DIR="$HOME/.nvm"
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+
+### SETTING THE STARSHIP PROMPT ###
+eval "$(starship init zsh)"
 
