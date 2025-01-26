@@ -115,7 +115,6 @@ alias ytdl="yt-dlp --proxy 'socks5://127.0.0.1:9150'"
 alias bl="bluetoothctl"
 alias blc="bluetoothctl connect"
 alias bld="bluetoothctl disconnect"
-alias history="echo 'Fuck you, bitch!'"
 alias ff="fastfetch"
 
 alias qconfig="code ~/.config/qtile/config.py"
