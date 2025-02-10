@@ -1,6 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -10,32 +7,16 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="edvardm"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -62,6 +43,8 @@ ZSH_THEME="edvardm"
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
+HISTFILE=~/.cache/zsh_history
+
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
@@ -71,53 +54,40 @@ ZSH_THEME="edvardm"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git
+    vi-mode
     zsh-autosuggestions
     zsh-syntax-highlighting
+    git
     gh
 )
 
+export KEYTIMEOUT=1
+
 source $ZSH/oh-my-zsh.sh
 
+
 # User configuration
+alias vim="nvim"
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# Quick cd using fzf
+fcd() {
+  cd "$(find -type d | fzf --preview 'tree -C {} | head -200' --preview-window 'up:60%')"
+}
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# Find and edit using fzf
+fe() {
+  nvim "$(find -type f | fzf --preview 'cat {}' --preview-window 'up:60%')"
+}
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
-
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-alias cd="z"
+# alias cd="z"
 alias tornew="pidof tor | xargs sudo kill -HUP"
 alias ytdl="yt-dlp --proxy 'socks5://127.0.0.1:9150'"
-#alias rm='trash -v'
 alias bl="bluetoothctl"
 alias blc="bluetoothctl connect"
 alias bld="bluetoothctl disconnect"
 alias ff="fastfetch"
 
-alias qconfig="code ~/.config/qtile/config.py"
+alias qconfig="vim ~/.config/qtile/config.py"
 
 alias wifi-status="nmcli dev status"
 alias wifi-on="nmcli radio wifi on"
@@ -132,6 +102,9 @@ alias jctl="journalctl -p 3 -xb"
 
 alias polkit-gnome="/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
+alias t="tmux"
+alias e="exit"
+
 # NVM
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
@@ -143,4 +116,4 @@ source <(fzf --zsh)
 ### SETTING THE STARSHIP PROMPT ###
 eval "$(starship init zsh)"
 
-eval "$(zoxide init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
